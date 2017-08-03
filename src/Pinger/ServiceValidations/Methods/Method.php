@@ -15,7 +15,7 @@ use Pinger\Services\Models\Service;
 abstract class Method implements IObserverSubject
 {
     /**
-     * Obser
+     * Observer
      */
     use SubjectTrait;
 
