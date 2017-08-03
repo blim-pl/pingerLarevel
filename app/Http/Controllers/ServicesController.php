@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Pinger\ServiceLogs\Models\ServiceLogs;
 use Pinger\Services\Models\Service;
 use Pinger\Services\Requests\ServiceRequest;
 
@@ -52,7 +53,8 @@ class ServicesController extends Controller
      */
     public function show(Service $service)
     {
-        $logs = $service->serviceLogs;
+        //$logs = $service->log()->paginate(3);
+        $logs = $service->log()->paginate(3);
 
         return view('services.show', compact('service', 'logs'));
     }

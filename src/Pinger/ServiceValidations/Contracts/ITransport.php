@@ -6,7 +6,7 @@
  * Time: 12:54
  */
 
-namespace Pinger\ServiceValidations\Transports;
+namespace Pinger\ServiceValidations\Contracts;
 
 interface ITransport
 {

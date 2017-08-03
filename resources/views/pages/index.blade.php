@@ -99,13 +99,17 @@
                                 @endif
                             </td>
                             <td class="text-center">
-                                <a href="/pages/{{ $page->id }}/edit" class="btn btn-primary">Edytuj</a>
+                                <a href="/pages/{{ $page->id }}/edit" class="btn btn-primary" title="Edytuj">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
                             </td>
                             <td class="text-center">
                                 <form method="post" action="/pages/{{ $page->id }}">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
-                                    <button type="submit" class="btn btn-danger">Usuń</button>
+                                    <button type="submit" class="btn btn-danger">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
                                 </form>
                             </td>
                         </tr>

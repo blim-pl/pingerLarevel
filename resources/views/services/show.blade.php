@@ -60,6 +60,10 @@
                         </tr>
                     @endforeach
                 </table>
+
+                <div class="text-center">
+                    {{ $logs->links() }}
+                </div>
             </div>
         </div>
     </div>

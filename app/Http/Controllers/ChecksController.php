@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Pinger\ServiceLogs\Models\ServiceLogs;
+use Pinger\ServiceLogs\Observer;
 use Pinger\Services\Models\Service;
 
 class ChecksController extends Controller
@@ -19,6 +20,8 @@ class ChecksController extends Controller
         $methodClass = $service->validationMethod();
         $methodInstance = new $methodClass($service);
 
+        $methodInstance->attach(new Observer());
+
         $result = $methodInstance->process()->result();
 
         if ($result) {
@@ -29,11 +32,7 @@ class ChecksController extends Controller
             $type = 'danger';
         }
 
-        ServiceLogs::create([
-           'service_id' => $service->id,
-            'check_result' => $result,
-            'message' => $methodInstance->getMessagesString()
-        ]);
+        $methodInstance->notify();
 
         session()->flash('message', ['content' => $message, 'type' => $type]);
 

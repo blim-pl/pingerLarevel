@@ -8,10 +8,17 @@
 
 namespace Pinger\ServiceValidations\Methods;
 
+use Pinger\Observer\Contracts\IObserverSubject;
+use Pinger\Observer\SubjectTrait;
 use Pinger\Services\Models\Service;
 
-abstract class Method
+abstract class Method implements IObserverSubject
 {
+    /**
+     * Obser
+     */
+    use SubjectTrait;
+
     /**
      * @var Service Current service to process
      */
@@ -47,6 +54,11 @@ abstract class Method
                 'method' => 'GET'
             ]);
         }
+    }
+
+    public function getService(): Service
+    {
+        return $this->service;
     }
 
     /**

@@ -15,7 +15,8 @@
                         <tr>
                             <th>Nazwa</th>
                             <th>Url</th>
-                            <th>Aktywna</th>
+                            <th class="text-center">Aktywna</th>
+                            <th>Ost. aktywność</th>
                             <th colspan="3" class="text-center">Akcje</th>
                         </tr>
                         @foreach ($services as $service)
@@ -28,25 +29,42 @@
                             <td>
                                 {{ $service->url }}
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @if ($service->is_active)
                                     <span class="glyphicon glyphicon-ok"></span>
                                 @else
                                     <span class="glyphicon glyphicon-remove"></span>
                                 @endif
                             </td>
-                            <td class="text-center">
-                                <a href="/services/{{ $service->id }}/edit" class="btn btn-primary">Edytuj</a>
+                            <td>
+                                <?php $lastLog = $service->lastLog(); ?>
+
+                                @if ($lastLog->check_result)
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                @else
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                @endif
+                                    &nbsp;
+                                [{{ $lastLog->created_at->diffForHumans() }}]
                             </td>
                             <td class="text-center">
-                                <a href="/checks/{{ $service->id }}" class="btn btn-success">Dajesz</a>
+                                <a href="/services/{{ $service->id }}/edit" class="btn btn-primary" title="Edytuj">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="/checks/{{ $service->id }}" class="btn btn-success" title="Uruchom">
+                                    <span class="glyphicon glyphicon-play"></span>
+                                </a>
                             </td>
                             <td class="text-center">
                                 <form method="post" action="/services/{{ $service->id }}">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
 
-                                    <button class="btn btn-danger" type="submit">Usuń</button>
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </button>
                                 </form>
                             </td>
                         </tr>

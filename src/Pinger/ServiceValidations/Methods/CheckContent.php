@@ -12,7 +12,7 @@ use Pinger\ServiceValidations\Contracts\IMethod;
 
 class CheckContent extends Method implements IMethod
 {
-    protected static $label = 'Wyszukanie w treści odpowiedzi';
+    protected static $label = 'Wyszukanie w treści odpowiedzi - frazy po przecinku';
     protected static $value = 'checkContent';
     protected $transportClass = \Pinger\ServiceValidations\Transports\CurlGuzzle::class;
 
@@ -80,6 +80,22 @@ class CheckContent extends Method implements IMethod
 
     public function result(): bool
     {
-        return strpos($this->getContent(), $this->service->expects) !== false;
+        if (strpos($this->service->expects, ',') !== false) {
+            $keywords = array_map('trim', explode(', ', $this->service->expects));
+        } else {
+            $keywords = [trim($this->service->expects)];
+        }
+
+        $result = true;
+        $content = $this->getContent();
+
+        foreach ($keywords as $keyword) {
+            if (strpos($content, $keyword) === false) {
+                $result = false;
+                break;
+            }
+        }
+
+        return $result;
     }
 }

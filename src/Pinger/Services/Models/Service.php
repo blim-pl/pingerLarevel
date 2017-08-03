@@ -46,9 +46,13 @@ class Service extends Model
         return $this->hasMany(ServiceLogs::class);
     }
 
-    public function serviceLogs()
+    public function log()
     {
+        return $this->logs()->orderByDesc('created_at');
+    }
 
-        return $this->logs()->orderBy('created_at', 'desc');
+    public function lastLog()
+    {
+        return $this->log()->first();
     }
 }

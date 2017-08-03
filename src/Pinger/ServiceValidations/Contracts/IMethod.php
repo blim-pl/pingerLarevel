@@ -1,9 +1,16 @@
 <?php
 namespace Pinger\ServiceValidations\Contracts;
 
+use Pinger\Services\Models\Service;
+
 interface IMethod
 {
     public function process(): IMethod;
+
+    /**
+     * @return Service
+     */
+    public function getService(): Service;
 
     /**
      * Compare response from request to expect value
