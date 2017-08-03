@@ -1,0 +1,9 @@
+- rodzaje walidacji z bazy - lub konfigu
+- logi
+- powiadomienia
+- logowanie
+- grupowanie routingu
+- tłumaczenia - słowniki
+- flash z komunikatem po zapisie|usunięciu
+- potwierdzenie usunięcia
+- aliasy stronphp
