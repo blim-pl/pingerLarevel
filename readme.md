@@ -30,7 +30,7 @@ Create local configuration (database connection).
 Use .env.example file.
 
 ```text
-$ cp ./common/config-example.php ./common/config.php
+$ cp .env.example .env
 ```
 
 Migrate database structure. 
