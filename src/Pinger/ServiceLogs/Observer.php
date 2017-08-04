@@ -14,12 +14,21 @@ use Pinger\ServiceLogs\Models\ServiceLogs;
 
 class Observer implements IObserver
 {
-    public function update(IObserverSubject $checkMethod)
+    private $checkMethod;
+
+    private function save()
     {
         ServiceLogs::create([
-            'service_id' => $checkMethod->getService()->id,
-            'check_result' => $checkMethod->result(),
-            'message' => $checkMethod->getMessagesString()
+            'service_id' => $this->checkMethod->getService()->id,
+            'check_result' => $this->checkMethod->result(),
+            'message' => $this->checkMethod->getMessagesString()
         ]);
+    }
+
+    public function update(IObserverSubject $checkMethod)
+    {
+        $this->checkMethod = $checkMethod;
+
+        $this->save();
     }
 }

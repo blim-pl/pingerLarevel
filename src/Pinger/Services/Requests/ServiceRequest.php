@@ -27,7 +27,8 @@ class ServiceRequest extends FormRequest
             'title' => 'required|max:255',
             'url'   => 'required|max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-\?=&]*)*\/?$/',
             'valid_method'=> 'required',
-            'expects' => 'required'
+            'expects' => 'required',
+            'emails' => 'required'
         ];
     }
 }

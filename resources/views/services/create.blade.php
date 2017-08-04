@@ -55,6 +55,12 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Adresy email do powiadomień (więcej niż 1 po przecinku)</label>
+                                <input type="text" class="form-control" name="emails" value="{{ old('emails') }}" placeholder="adresy email" />
+                            </div>
+
+
+                            <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Zapisz</button>
                             </div>
                         </div>

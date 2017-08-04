@@ -20,6 +20,7 @@ class CreateServicesTable extends Migration
             $table->string('url', 255);
             $table->string('valid_method', 64);
             $table->text('expects');
+            $table->text('emails');
             $table->timestamps();
         });
     }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Pinger\ServiceLogs\Models\ServiceLogs;
-use Pinger\ServiceLogs\Observer;
+use Pinger\Mailer\Observer as MailerObserver;
+use Pinger\ServiceLogs\Observer as LogsObserver;
 use Pinger\Services\Models\Service;
 
 class ChecksController extends Controller
@@ -20,7 +20,9 @@ class ChecksController extends Controller
         $methodClass = $service->validationMethod();
         $methodInstance = new $methodClass($service);
 
-        $methodInstance->attach(new Observer());
+        $methodInstance
+            ->attach(new LogsObserver())
+            ->attach(new MailerObserver());
 
         $result = $methodInstance->process()->result();
 

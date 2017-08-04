@@ -55,4 +55,9 @@ class Service extends Model
     {
         return $this->log()->first();
     }
+
+    public function emailsList()
+    {
+        return array_map('trim', explode(',', $this->emails));
+    }
 }

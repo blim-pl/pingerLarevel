@@ -40,7 +40,7 @@ class ServicesController extends Controller
      */
     public function store(ServiceRequest $request)
     {
-        Service::create(request(['title', 'is_active', 'url', 'valid_method', 'expects']));
+        Service::create(request(['title', 'is_active', 'url', 'valid_method', 'expects', 'emails']));
 
         return redirect()->route('services.index');
     }
@@ -81,7 +81,7 @@ class ServicesController extends Controller
      */
     public function update(ServiceRequest $request, Service $service)
     {
-        $service->update($request->only(['title', 'is_active', 'url', 'valid_method', 'expects']));
+        $service->update($request->only(['title', 'is_active', 'url', 'valid_method', 'expects', 'emails']));
 
         return redirect()->route('services.index');
     }
