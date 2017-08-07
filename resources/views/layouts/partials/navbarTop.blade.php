@@ -6,7 +6,7 @@
         </li>
         @foreach ($menuTop as $item)
             <li class="page-scroll">
-                <a href="/pages/{{ $item->id }}">{{ $item->title }}</a>
+                <a href="/{{ $item->alias }}">{{ $item->title }}</a>
             </li>
         @endforeach
         @if ($servicesCnt > 0)

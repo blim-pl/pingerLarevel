@@ -17,7 +17,8 @@ class ServicesTableSeeder extends Seeder
             'url' => 'http://trojmiasto.pl',
             'is_active' => true,
             'valid_method' => 'checkStatus',
-            'expects' => 200
+            'expects' => 200,
+            'emails' => 'blim@go2.pl'
         ]);
 
         Service::create([
@@ -25,7 +26,8 @@ class ServicesTableSeeder extends Seeder
             'url' => 'http://trojmiasto.pl',
             'is_active' => true,
             'valid_method' => 'checkContent',
-            'expects' => 'Wiadomości'
+            'expects' => 'Wiadomości',
+            'emails' => 'blim@o2.pl'
         ]);
     }
 }

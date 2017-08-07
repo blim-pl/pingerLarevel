@@ -16,8 +16,9 @@ class CreateServiceLogsTable extends Migration
         Schema::create('service_logs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('service_id')->unsigned();
-            $table->boolean('check_result');
-            $table->text('message');
+            $table->boolean('result');
+            $table->string('item_type', 50);
+            $table->jsonb('data');
             $table->timestamps();
         });
 

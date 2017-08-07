@@ -1,11 +1,15 @@
 @component('mail::message')
 
+@component('mail::panel')
 {{ $serviceName }}
-
-@component('mail::button', ['url' => ''])
-    Wynik testu: {{ $result }}.
 @endcomponent
 
+@component('mail::button', ['url' => '', 'color' => $result ? 'green' : 'red'])
+    Wynik testu: {{ $message }}.
+@endcomponent
+
+@component('mail::panel')
 I co teraz?
+@endcomponent
 
 @endcomponent

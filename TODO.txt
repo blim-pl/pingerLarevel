@@ -6,4 +6,4 @@
 - tłumaczenia - słowniki
 - flash z komunikatem po zapisie|usunięciu
 - potwierdzenie usunięcia
-- aliasy stronphp
+- aliasy stronphp - sprawdzanie czy alias nie pokrywa się z istniejącym routingiem...

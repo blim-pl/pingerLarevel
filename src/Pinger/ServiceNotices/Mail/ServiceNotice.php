@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace Pinger\ServiceNotices\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -15,9 +15,10 @@ class ServiceNotice extends Mailable
     private $checkedMethod;
 
     /**
+     * ServiceNotice constructor.
      * Create a new message instance.
      *
-     * @return void
+     * @param IMethod $checkedMethod
      */
     public function __construct(IMethod $checkedMethod)
     {
@@ -32,7 +33,11 @@ class ServiceNotice extends Mailable
     public function build()
     {
         $result = $this->checkedMethod->result();
+        $message = $result ? 'OK' : 'Failure';
         $serviceName = $this->checkedMethod->getService()->title;
-        return $this->markdown('emails.serviceNotice', compact('result', 'serviceName'));
+
+        $this->subject('Service - ' . $serviceName . ' - ' . $message);
+
+        return $this->markdown('emails.serviceNotice', compact('result', 'serviceName', 'message'));
     }
 }

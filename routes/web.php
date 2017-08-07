@@ -16,15 +16,14 @@ https://laravel.com/docs/5.4/controllers
 Route::get('/', 'PagesController@index');
 
 /**
- * Pages
- */
-\Pinger\Pages\Routes::web();
-
-/**
  * Services
  */
 \Pinger\Services\Routes::web();
 
+/**
+ * Pages
+ */
+\Pinger\Pages\Routes::web();
 
 /**
  * Checks - uruchamianie usług

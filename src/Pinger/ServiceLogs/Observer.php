@@ -8,8 +8,8 @@
 
 namespace Pinger\ServiceLogs;
 
-use Pinger\Observer\Contracts\IObserver;
-use Pinger\Observer\Contracts\IObserverSubject;
+use CMS\Observer\Contracts\IObserver;
+use CMS\Observer\Contracts\IObserverSubject;
 use Pinger\ServiceLogs\Models\ServiceLogs;
 
 class Observer implements IObserver
@@ -20,8 +20,9 @@ class Observer implements IObserver
     {
         ServiceLogs::create([
             'service_id' => $this->checkMethod->getService()->id,
-            'check_result' => $this->checkMethod->result(),
-            'message' => $this->checkMethod->getMessagesString()
+            'item_type' => ServiceLogs::$MONITORING,
+            'result' => $this->checkMethod->result(),
+            'data' => $this->checkMethod->getMessages()
         ]);
     }
 

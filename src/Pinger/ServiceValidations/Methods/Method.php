@@ -8,8 +8,8 @@
 
 namespace Pinger\ServiceValidations\Methods;
 
-use Pinger\Observer\Contracts\IObserverSubject;
-use Pinger\Observer\SubjectTrait;
+use CMS\Observer\Contracts\IObserverSubject;
+use CMS\Observer\SubjectTrait;
 use Pinger\Services\Models\Service;
 
 abstract class Method implements IObserverSubject

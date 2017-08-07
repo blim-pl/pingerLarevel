@@ -229,4 +229,8 @@ return [
 
     ],
 
+    'pinger' => [
+        //co ile sekund wysyłka kolejnego maila o tym samym błędzie maila
+        'notice-delay' => 60
+    ]
 ];

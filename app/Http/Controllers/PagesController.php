@@ -104,4 +104,10 @@ class PagesController extends Controller
 
         return redirect()->route('pages.index');
     }
+
+    public function showByAlias(string $alias)
+    {
+        $page = (new Page)->getByAlias($alias);
+        return view('pages.show', compact('page'));
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Pinger\Mailer\Observer as MailerObserver;
+use Pinger\ServiceNotices\Observer as MailerObserver;
 use Pinger\ServiceLogs\Observer as LogsObserver;
 use Pinger\Services\Models\Service;
 
@@ -18,11 +18,12 @@ class ChecksController extends Controller
     public function show(Service $service)
     {
         $methodClass = $service->validationMethod();
+
         $methodInstance = new $methodClass($service);
 
         $methodInstance
-            ->attach(new LogsObserver())
-            ->attach(new MailerObserver());
+            ->attach(new MailerObserver())
+            ->attach(new LogsObserver());
 
         $result = $methodInstance->process()->result();
 

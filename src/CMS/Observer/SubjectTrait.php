@@ -6,10 +6,10 @@
  * Time: 10:45
  */
 
-namespace Pinger\Observer;
+namespace CMS\Observer;
 
-use Pinger\Observer\Contracts\IObserver;
-use Pinger\Observer\Contracts\IObserverSubject;
+use CMS\Observer\Contracts\IObserver;
+use CMS\Observer\Contracts\IObserverSubject;
 
 trait SubjectTrait
 {

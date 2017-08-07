@@ -40,6 +40,7 @@
                 <table class="table table-striped">
                     <tr>
                         <th>Data utworzenia</th>
+                        <th>Typ</th>
                         <th>Ile czasu temu</th>
                         <th class="text-center">Rezultat</th>
                         <th>Komunikat</th>
@@ -48,15 +49,16 @@
                     @foreach ($logs as $log)
                         <tr>
                             <td>{{ $log->created_at }}</td>
+                            <td>{{ $itemTypes[$log['item_type']] }}</td>
                             <td>{{ $log->created_at->diffForHumans() }}</td>
                             <td class="text-center">
-                                @if ($log->check_result)
+                                @if ($log->result)
                                     <span class="glyphicon glyphicon-ok"></span>
                                 @else
                                     <span class="glyphicon glyphicon-remove"></span>
                                 @endif
                             </td>
-                            <td>{{ $log->message }}</td>
+                            <td>{!! implode('<br />', $log->data) !!}</td>
                         </tr>
                     @endforeach
                 </table>

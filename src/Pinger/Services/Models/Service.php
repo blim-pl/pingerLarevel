@@ -41,6 +41,11 @@ class Service extends Model
         throw new \InvalidArgumentException(sprintf('Check service validation method [%]', $this->valid_method));
     }
 
+    /**
+     * Service checks log
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function logs()
     {
         return $this->hasMany(ServiceLogs::class);
@@ -53,11 +58,16 @@ class Service extends Model
 
     public function lastLog()
     {
-        return $this->log()->first();
+        return $this->log()->where('item_type', ServiceLogs::$MONITORING)->first();
     }
 
     public function emailsList()
     {
         return array_map('trim', explode(',', $this->emails));
+    }
+
+    public function lastNotice()
+    {
+        return $this->logs()->where([['service_id', $this->id],  ['item_type', ServiceLogs::$NOTICE]])->orderByDesc('created_at')->first();
     }
 }

@@ -6,7 +6,7 @@
  * Time: 10:39
  */
 
-namespace Pinger\Observer\Contracts;
+namespace CMS\Observer\Contracts;
 
 
 interface IObserver
