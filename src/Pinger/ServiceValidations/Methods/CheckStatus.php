@@ -1,7 +1,6 @@
 <?php
 namespace Pinger\ServiceValidations\Methods;
 
-use Pinger\Services\Models\Service;
 use Pinger\ServiceValidations\Contracts\IMethod;
 
 /**

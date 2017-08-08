@@ -12,7 +12,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use Pinger\ServiceValidations\Contracts\ITransport;
 
-final class CurlGuzzle implements ITransport
+class CurlGuzzle implements ITransport
 {
     private $config;
     private $client;
