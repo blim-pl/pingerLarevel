@@ -14,7 +14,6 @@ class CheckContent extends Method implements IMethod
 {
     protected static $label = 'Wyszukanie w treści odpowiedzi - frazy po przecinku';
     protected static $value = 'checkContent';
-    protected $transportClass = \Pinger\ServiceValidations\Transports\CurlGuzzle::class;
 
     private $encoding = 'UTF-8';
     private $response;

@@ -20,24 +20,36 @@ final class CurlGuzzle implements ITransport
     private $messages = [];
     public static $requestMethods = ['GET', 'POST'];
 
-    public function __construct(array $config)
+    public function __construct(array $config = [])
     {
         $this->config = $config;
         $this->client = new Client();
     }
 
-    /**
-     * @return string
-     */
-    private function getUrl()
+    public function setUrl($value): ITransport
     {
-        return $this->config['url'];
+        $this->config['url'] = $value;
+        return $this;
     }
 
     /**
      * @return string
      */
-    private function getRequestMethod()
+    public function getUrl(): string
+    {
+        return $this->config['url'];
+    }
+
+    public function setRequestMethod($value): ITransport
+    {
+        $this->config['method'] = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequestMethod(): string
     {
         return $this->config['method'];
     }

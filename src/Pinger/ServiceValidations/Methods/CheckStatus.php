@@ -19,7 +19,6 @@ class CheckStatus extends Method implements IMethod
 
     protected static $label = 'Sprawdź status odpowiedzi (HTTP Code)';
     protected static $value = 'checkStatus';
-    protected $transportClass = \Pinger\ServiceValidations\Transports\CurlGuzzle::class;
 
     public static function getMeta(): array
     {

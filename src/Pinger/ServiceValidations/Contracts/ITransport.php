@@ -36,4 +36,12 @@ interface ITransport
      * @return array
      */
     public function getMessages(): array;
+
+    public function getUrl(): string;
+
+    public function setUrl($value): ITransport;
+
+    public function setRequestMethod($value): ITransport;
+
+    public function getRequestMethod(): string;
 }

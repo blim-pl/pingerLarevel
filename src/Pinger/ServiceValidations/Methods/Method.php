@@ -11,6 +11,7 @@ namespace Pinger\ServiceValidations\Methods;
 use CMS\Observer\Contracts\IObserverSubject;
 use CMS\Observer\SubjectTrait;
 use Pinger\Services\Models\Service;
+use Pinger\ServiceValidations\Contracts\ITransport;
 
 abstract class Method implements IObserverSubject
 {
@@ -41,19 +42,17 @@ abstract class Method implements IObserverSubject
 
     /**
      * Method constructor.
-     *
      * @param Service $service
+     * @param ITransport $transport
      */
-    public function __construct(Service $service)
+    public function __construct(Service $service, ITransport $transport)
     {
         $this->service = $service;
 
-        if ($this->transportClass) {
-            $this->transport = new $this->transportClass([
-                'url' => $this->service->url,
-                'method' => 'GET'
-            ]);
-        }
+        $this->transport = $transport;
+        $this->transport
+            ->setUrl($this->service->url)
+            ->setRequestMethod('GET');
     }
 
     public function getService(): Service

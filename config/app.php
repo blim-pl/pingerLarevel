@@ -231,6 +231,7 @@ return [
 
     'pinger' => [
         //co ile sekund wysyłka kolejnego maila o tym samym błędzie maila
-        'notice-delay' => 60
+        'notice-delay' => 60,
+        'services-transport' => \Pinger\ServiceValidations\Transports\CurlGuzzle::class
     ]
 ];
