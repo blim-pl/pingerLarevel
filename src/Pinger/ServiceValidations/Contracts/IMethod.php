@@ -47,4 +47,9 @@ interface IMethod
      * @return string
      */
     public function getMessagesString($glue = "\r\n"): string;
+
+    /**
+     * @return int
+     */
+    public function getResponseCode(): int;
 }

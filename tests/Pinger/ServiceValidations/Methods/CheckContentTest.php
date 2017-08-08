@@ -11,12 +11,12 @@ namespace Tests\Pinger\ServiceValidations\Methods;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Pinger\Services\Models\Service;
 use Pinger\ServiceValidations\Contracts\ITransport;
-use Pinger\ServiceValidations\Methods\CheckStatus;
+use Pinger\ServiceValidations\Methods\CheckContent;
 use Tests\Pinger\Fixtures\ServiceValidationsFixtures;
 use Tests\TestCase;
 use Mockery;
 
-class CheckStatusTest extends TestCase
+class CheckContentTest extends TestCase
 {
     use DatabaseTransactions;
 
@@ -25,8 +25,8 @@ class CheckStatusTest extends TestCase
     public function setUp()
     {
         $this->correctServiceData = ServiceValidationsFixtures::$correctServiceData;
-        $this->correctServiceData['valid_method'] = 'checkStatus';
-        $this->correctServiceData['expects'] = ServiceValidationsFixtures::$expectedCorrectStatus;
+        $this->correctServiceData['valid_method'] = 'checkContent';
+        $this->correctServiceData['expects'] = ServiceValidationsFixtures::$expectedCorrectContent;
     }
 
     public function testProcessWithSuccess()
@@ -36,11 +36,12 @@ class CheckStatusTest extends TestCase
         $transportMock = Mockery::mock(ITransport::class);
         $transportMock->shouldReceive('setUrl')->andReturnSelf();
         $transportMock->shouldReceive('setRequestMethod')->andReturnSelf();
-        $transportMock->shouldReceive('getResponseCode')->andReturn(ServiceValidationsFixtures::$expectedCorrectStatus);
+        $transportMock->shouldReceive('getContent')->andReturn('<html>' . ServiceValidationsFixtures::$expectedCorrectContent .'</html>');
+        $transportMock->shouldReceive('getHeaders')->andReturnNull();
 
-        $checkMethod = new CheckStatus($service, $transportMock);
+        $checkMethod = new CheckContent($service, $transportMock);
         $result = $checkMethod->process()->result();
 
-        $this->assertTrue($result, sprintf('Process result should be true [%s]', $result));
+        $this->assertTrue($result, sprintf('Expected phrases has been not found [%s]', ServiceValidationsFixtures::$expectedCorrectContent));
     }
 }

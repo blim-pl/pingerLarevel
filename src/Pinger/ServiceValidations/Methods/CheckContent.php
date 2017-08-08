@@ -40,7 +40,7 @@ class CheckContent extends Method implements IMethod
      */
     private function convertCharset($encoding, $content)
     {
-        if ($encoding != $this->encoding) {
+        if ($encoding && $encoding != $this->encoding) {
             return mb_convert_encoding($content, $this->encoding, $encoding);
         }
 

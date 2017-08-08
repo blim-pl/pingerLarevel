@@ -84,4 +84,9 @@ abstract class Method implements IObserverSubject
     {
         return implode($glue, $this->getMessages());
     }
+
+    public function getResponseCode(): int
+    {
+        return $this->transport->getResponseCode();
+    }
 }

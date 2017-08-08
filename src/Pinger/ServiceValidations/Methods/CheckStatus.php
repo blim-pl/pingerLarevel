@@ -32,7 +32,7 @@ class CheckStatus extends Method implements IMethod
      */
     public function process(): IMethod
     {
-        $this->response = $this->transport->getResponseCode();
+        $this->response = $this->getResponseCode();
 
         return $this;
     }
