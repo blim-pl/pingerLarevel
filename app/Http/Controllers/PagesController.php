@@ -39,7 +39,6 @@ class PagesController extends Controller
      */
     public function store(PageRequest $request)
     {
-
         Page::create([
                 'title' => request('title'),
                 'alias' => request('alias'),

@@ -25,7 +25,7 @@ class PageRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'alias' => 'regex:/^[a-z\d\-\_]+$/'
+            'alias' => 'regex:/^[a-z\d\-\_]+$/|unique:pages'
         ];
     }
 }

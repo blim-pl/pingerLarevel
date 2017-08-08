@@ -40,9 +40,9 @@
 
 {{--@include('layouts.partials.header')--}}
 
-@include('layouts.partials.message');
+@include('layouts.partials.message')
 
-@yield('content');
+@yield('content')
 
 {{--@include('layouts.sections.portfolio')--}}
 

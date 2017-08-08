@@ -7,3 +7,14 @@
 - flash z komunikatem po zapisie|usunięciu
 - potwierdzenie usunięcia
 - aliasy stronphp - sprawdzanie czy alias nie pokrywa się z istniejącym routingiem...
+
+Aplikacja umożliwia monitorowanie usług poprzez sprawdzenie statusu odpowiedzi lub wyszukanie frazy w treści odpowiedzi.
+Status odpowiedzi określa się poprzez podanie oczekiwanego kodu HTTP np. 200. Wyszukiwanie fraz polega na podaniu listy
+oczekiwanych fraz (kolejne frazy podawane są po przecinku).
+Aplikacja udostępnia log wykonanych działań. Aplikacja wysyła powiadomienia w formie wiadomości na email.
+W przypadku wykrycia błędu aplikacja wysyła powiadomienie na zdefiniowane w usłudze adresy email.
+Po wykryciu zakończenia awarii użytkownik zostanie powiadomiony o ponownym działaniu monitorowanej
+usługi. Aplikacja umożliwia rejsetrację użytkownika (logowanie, przypomnienie hasła, konto użytkownika).
+Każdy z użytkowników posiada własne zdefiniowane usługi. Każde konto posiada limit 10 usług.
+
+Aplikacja będzie uruchamiana cyklicznie co 60s (1 minutę) - równoległe procesy w php.

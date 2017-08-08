@@ -53,8 +53,7 @@ class ServicesController extends Controller
      */
     public function show(Service $service)
     {
-        //$logs = $service->log()->paginate(3);
-        $logs = $service->log()->paginate(3);
+        $logs = $service->log()->paginate(10);
         $itemTypes = ServiceLogs::$typesMap;
 
         return view('services.show', compact('service', 'logs', 'itemTypes'));

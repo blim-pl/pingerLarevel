@@ -30,11 +30,6 @@ class Routes
             Route::delete('/{page}', $controller . '@destroy');
         });
 
-//        Route::get('/{alias}', function($alias) {
-//            $routeCollection = Route::getRoutes();
-//            dd($routeCollection);
-//        });
-
         Route::get('/{alias}', $controller . '@showByAlias')->name('pages.show');
     }
 }

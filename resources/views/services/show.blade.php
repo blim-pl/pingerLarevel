@@ -43,7 +43,7 @@
                         <th>Typ</th>
                         <th>Ile czasu temu</th>
                         <th class="text-center">Rezultat</th>
-                        <th>Komunikat</th>
+                        <th>Dane</th>
                     </tr>
 
                     @foreach ($logs as $log)
