@@ -18,5 +18,4 @@ return [
     'sent' => 'We have e-mailed your password reset link!',
     'token' => 'This password reset token is invalid.',
     'user' => "Nie istnieje konto z podanym adresem email.",
-
 ];

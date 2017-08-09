@@ -3,6 +3,7 @@
 namespace Pinger\Services\Models;
 
 use App\Model;
+use App\User;
 use Pinger\ServiceLogs\Models\ServiceLogs;
 use Pinger\ServiceValidations\Methods\CheckContent;
 use Pinger\ServiceValidations\Methods\CheckStatus;
@@ -69,5 +70,15 @@ class Service extends Model
     public function lastNotice()
     {
         return $this->logs()->where([['service_id', $this->id],  ['item_type', ServiceLogs::$NOTICE]])->orderByDesc('created_at')->first();
+    }
+
+    public function scopeUserServices($query, User $user)
+    {
+        return $query->where('user_id', $user->id);
+    }
+
+    public function isOwner(User $user)
+    {
+        return $user->id === $this->user_id;
     }
 }

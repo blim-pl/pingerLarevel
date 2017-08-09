@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Pinger\Services\Models\Service;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function servicesCnt()
+    {
+        return $this->services()->count();
+    }
 }
