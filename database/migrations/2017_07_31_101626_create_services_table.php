@@ -15,6 +15,7 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->string('title', 255);
             $table->boolean('is_active', 0);
             $table->string('url', 255);
@@ -22,6 +23,12 @@ class CreateServicesTable extends Migration
             $table->text('expects');
             $table->text('emails');
             $table->timestamps();
+        });
+
+        Schema::table('services', function (Blueprint $table) {
+           $table->foreign('user_id')
+               ->references('id')
+               ->on('users');
         });
     }
 

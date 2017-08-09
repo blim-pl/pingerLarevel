@@ -25,9 +25,9 @@ class Routes
             Route::get('/{service}', $controller . '@show')->name('services.show');
             Route::get('/{service}/edit', $controller . '@edit')->name('services.edit');
 
-            Route::post('/', $controller . '@store');
-            Route::patch('/{service}', $controller . '@update');
-            Route::delete('/{service}', $controller . '@destroy');
+            Route::post('/', $controller . '@store')->name('services.store');
+            Route::patch('/{service}', $controller . '@update')->name('services.update');
+            Route::delete('/{service}', $controller . '@destroy')->name('services.destroy');
         });
     }
 }

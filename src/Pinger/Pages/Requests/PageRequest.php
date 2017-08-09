@@ -23,9 +23,15 @@ class PageRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'title' => 'required|max:255',
             'alias' => 'regex:/^[a-z\d\-\_]+$/|unique:pages'
         ];
+
+        if ($this->method() == 'PATCH') {
+            $rules['alias'] .= ',id,' . $this->get('id');
+        }
+
+        return $rules;
     }
 }

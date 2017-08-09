@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Auth;
 use Pinger\Pages\Models\Page;
 use Illuminate\Support\ServiceProvider;
 use Pinger\Services\Models\Service;
@@ -17,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.partials.navbarTop', function ($view){
             $view->with('menuTop', (new Page())->menuTop());
-            $view->with('servicesCnt', Service::count());
+            $view->with('servicesCnt', Auth::user() ? Service::count() : 0);
         });
 
         view()->composer('layouts.master', function ($view){

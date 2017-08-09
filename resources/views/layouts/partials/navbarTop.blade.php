@@ -6,12 +6,12 @@
         </li>
         @foreach ($menuTop as $item)
             <li class="page-scroll">
-                <a href="/{{ $item->alias }}">{{ $item->title }}</a>
+                <a href="{{ url(App::getLocale(), $item->alias) }}">{{ $item->title }}</a>
             </li>
         @endforeach
         @if ($servicesCnt > 0)
             <li class="page-scroll">
-                <a href="/services">Twoje usługi</a>
+                <a href="{{ route('services.index') }}">Twoje usługi</a>
             </li>
         @endif
     <!-- Authentication Links -->

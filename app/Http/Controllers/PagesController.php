@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Pinger\Pages\Models\Page;
 use Illuminate\Http\Request;
 use Pinger\Pages\Requests\PageRequest;
 
 class PagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show', 'showByAlias']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +22,11 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $pages = Page::all();
+        if (Auth::guest()) {
+           $pages = null;
+        } else {
+            $pages = Page::all();
+        }
 
         return view('pages.index', compact('pages'));
     }

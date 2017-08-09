@@ -8,6 +8,11 @@ use Pinger\Services\Models\Service;
 
 class ChecksController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * TODO: translations / dictionary (?)
      *

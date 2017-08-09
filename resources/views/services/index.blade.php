@@ -22,7 +22,7 @@
                         @foreach ($services as $service)
                             <tr>
                                 <td>
-                                    <a href="/services/{{ $service->id }}">
+                                    <a href="{{ route('services.show', $service->id) }}">
                                         {{ $service->title }}
                                     </a>
                                 </td>
@@ -52,17 +52,17 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="/services/{{ $service->id }}/edit" class="btn btn-primary" title="Edytuj">
+                                    <a href="{{ route('services.edit', $service->id) }}" class="btn btn-primary" title="Edytuj">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <a href="/checks/{{ $service->id }}" class="btn btn-success" title="Uruchom">
+                                    <a href="{{ route('checks.show', $service->id) }}" class="btn btn-success" title="Uruchom">
                                         <span class="glyphicon glyphicon-play"></span>
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <form method="post" action="/services/{{ $service->id }}">
+                                    <form method="post" action="{{ route('services.destroy', $service->id) }}">
                                         {{ csrf_field() }}
                                         {{ method_field('delete') }}
 

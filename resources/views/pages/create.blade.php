@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     @include('layouts.partials.forms.errors')
 
-                    <form method="post" action="/pages">
+                    <form method="post" action="{{ route('pages.store') }}">
 
                         {{ csrf_field() }}
 

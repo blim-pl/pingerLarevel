@@ -14,7 +14,7 @@
 
                     @include('layouts.partials.forms.errors')
 
-                    <form method="post" action="/services/{{ $service->id }}">
+                    <form method="post" action="{{ route('services.update', $service->id) }}">
 
                         <div class="form-group">
                             {{ csrf_field() }}

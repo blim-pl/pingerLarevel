@@ -8,7 +8,7 @@
 
                     @include('layouts.partials.forms.errors')
 
-                    <form method="post" action="/pages/{{ $page->id }}">
+                    <form method="post" action="{{ route('pages.update', $page->id) }}">
 
                         {{ csrf_field() }}
                         {{ method_field('patch') }}

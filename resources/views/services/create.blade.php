@@ -14,7 +14,7 @@
 
                     @include('layouts.partials.forms.errors')
 
-                    <form method="post" action="/services">
+                    <form method="post" action="{{ route('services.store') }}">
                         <div class="form-group">
                             {{ csrf_field() }}
 

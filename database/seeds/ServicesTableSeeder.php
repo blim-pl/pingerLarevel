@@ -12,13 +12,16 @@ class ServicesTableSeeder extends Seeder
      */
     public function run()
     {
+        $user = \App\User::first();
+
         Service::create([
             'title' => 'Sprawdzenie statusu opdowiedzi - kod HTTP',
             'url' => 'http://trojmiasto.pl',
             'is_active' => true,
             'valid_method' => 'checkStatus',
             'expects' => 200,
-            'emails' => 'blim@go2.pl'
+            'emails' => 'blim@go2.pl',
+            'user_id' => $user->id
         ]);
 
         Service::create([
@@ -27,7 +30,8 @@ class ServicesTableSeeder extends Seeder
             'is_active' => true,
             'valid_method' => 'checkContent',
             'expects' => 'Wiadomości',
-            'emails' => 'blim@o2.pl'
+            'emails' => 'blim@o2.pl',
+            'user_id' => $user->id
         ]);
     }
 }

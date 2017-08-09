@@ -25,11 +25,11 @@ class Routes
             Route::get('/{page}', $controller . '@show')->name('pages.show');
             Route::get('/{page}/edit', $controller . '@edit')->name('pages.edit');
 
-            Route::post('/', $controller . '@store');
-            Route::patch('/{page}', $controller . '@update');
-            Route::delete('/{page}', $controller . '@destroy');
+            Route::post('/', $controller . '@store')->name('pages.store');
+            Route::patch('/{page}', $controller . '@update')->name('pages.update');
+            Route::delete('/{page}', $controller . '@destroy')->name('pages.destroy');
         });
 
-        Route::get('/{alias}', $controller . '@showByAlias')->name('pages.show');
+        Route::get('/{alias}', $controller . '@showByAlias');
     }
 }
