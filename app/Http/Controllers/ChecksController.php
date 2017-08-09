@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Pinger\ServiceNotices\Observer as MailerObserver;
 use Pinger\ServiceLogs\Observer as LogsObserver;
 use Pinger\Services\Models\Service;
@@ -22,6 +23,7 @@ class ChecksController extends Controller
      */
     public function show(Service $service)
     {
+
         $methodClass = $service->validationMethod();
         $transportClass = config('app.pinger.services-transport');
 
@@ -33,15 +35,16 @@ class ChecksController extends Controller
 
         $result = $methodInstance->process()->result();
 
+        $methodInstance->notify();
+
         if ($result) {
-           $message = 'OK';
-           $type = 'info';
+            $message = 'OK';
+            $type = 'info';
         } else {
             $message = 'Lipa';
             $type = 'danger';
         }
 
-        $methodInstance->notify();
 
         session()->flash('message', ['content' => $message, 'type' => $type]);
 

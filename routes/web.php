@@ -15,9 +15,15 @@ https://laravel.com/docs/5.4/controllers
 
 Route::get('/', 'PagesController@index');
 
-Route::prefix('/pl')->group(function($locale){
+Route::prefix('/pl')->group(function () {
 
     App::setLocale('pl');
+
+    /**
+     * Defaults
+     */
+    Auth::routes();
+    Route::get('/home', 'HomeController@index')->name('home');
 
     /**
      * Services
@@ -27,14 +33,7 @@ Route::prefix('/pl')->group(function($locale){
     /**
      * Checks - uruchamianie usług
      */
-    Route::prefix('/checks')->group(function(){
-        Route::get('/{service}', 'ChecksController@show')->name('checks.show');
-    });
-
-    Auth::routes();
-
-    Route::get('/home', 'HomeController@index')->name('home');
-
+    \Pinger\Checks\Routes::web();
 
     /**
      * Pages - aliasy stron

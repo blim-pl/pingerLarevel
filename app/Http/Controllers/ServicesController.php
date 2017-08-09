@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Pinger\ServiceLogs\Models\ServiceLogs;
 use Pinger\Services\Models\Service;
 use Pinger\Services\Requests\ServiceRequest;
@@ -20,7 +21,7 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = Service::all();
+        $services = Service::userServices(Auth::user())->get();
 
         return view('services.index', compact('services'));
     }
@@ -45,7 +46,11 @@ class ServicesController extends Controller
      */
     public function store(ServiceRequest $request)
     {
-        Service::create(request(['title', 'is_active', 'url', 'valid_method', 'expects', 'emails']));
+        $service = new Service($request->only(['title', 'is_active', 'url', 'valid_method', 'expects', 'emails']));
+        $service->setAttribute('user_id', Auth::user()->id);
+        $service->save();
+
+        //Service::create($data);
 
         return redirect()->route('services.index');
     }
@@ -86,7 +91,11 @@ class ServicesController extends Controller
      */
     public function update(ServiceRequest $request, Service $service)
     {
-        $service->update($request->only(['title', 'is_active', 'url', 'valid_method', 'expects', 'emails']));
+        $data = $request->only(['title', 'is_active', 'url', 'valid_method', 'expects', 'emails']);
+
+        $data['user_id'] = $service->id;
+
+        $service->update($data);
 
         return redirect()->route('services.index');
     }
@@ -100,6 +109,8 @@ class ServicesController extends Controller
     public function destroy(Service $service)
     {
         $service->delete();
+
+        session()->flash('message', ['content' => __('common.Item has been deleted'), 'type' => 'info']);
 
         return redirect()->route('services.index');
     }
