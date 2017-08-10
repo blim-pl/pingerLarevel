@@ -43,4 +43,13 @@ Route::prefix('/pl')->group(function () {
 
 Route::prefix('/admin')->group(function () {
 
+    Route::group(['middleware' => ['auth']], function () {
+
+        Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard');
+
+        Route::get('/services', 'Admin\ServicesController@index')->name('admin.services');
+        Route::get('/services/{service}', 'Admin\ServicesController@show')->name('admin.services.show');
+
+    });
+
 });

@@ -23,7 +23,7 @@ class ServiceLogs extends Model
         'data' => 'array',
     ];
 
-    public function services()
+    public function service()
     {
         return $this->belongsTo(Service::class);
     }

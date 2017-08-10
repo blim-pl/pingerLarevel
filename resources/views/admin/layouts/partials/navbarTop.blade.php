@@ -4,21 +4,12 @@
         <li class="hidden">
             <a href="#page-top"></a>
         </li>
-        @foreach ($menuTop as $item)
-            <li class="page-scroll">
-                <a href="{{ url(App::getLocale(), $item->alias) }}">{{ $item->title }}</a>
-            </li>
-        @endforeach
-        @if ($servicesCnt > 0)
-            <li class="page-scroll">
-                <a href="{{ route('services.index') }}">Twoje usługi</a>
-            </li>
-        @endif
 
+        <li class="page-scroll">
+            <a href="{{ route('admin.services') }}">Usługi</a>
+        </li>
     <!-- Authentication Links -->
         @if (Auth::guest())
-            <li><a href="{{ route('login') }}">Login</a></li>
-            <li><a href="{{ route('register') }}">Register</a></li>
         @else
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -41,7 +32,7 @@
             </li>
         @endif
 
-        <li><a href="{{ route('admin.dashboard') }}">Admin</a></li>
+
     </ul>
 </div>
 <!-- /.navbar-collapse -->

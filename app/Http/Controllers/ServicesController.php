@@ -21,7 +21,7 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = Service::userServices(Auth::user())->get();
+        $services = Service::userServices(Auth::user())->paginate(10);
 
         return view('services.index', compact('services'));
     }
