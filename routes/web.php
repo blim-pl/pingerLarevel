@@ -40,3 +40,7 @@ Route::prefix('/pl')->group(function () {
      */
     \Pinger\Pages\Routes::web();
 });
+
+Route::prefix('/admin')->group(function () {
+
+});

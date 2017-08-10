@@ -22,8 +22,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "Pinger\\" : "src/Pinger/",
-            "CMS\\" : "src/CMS/"
+            "Pinger\\" : "app/src/Pinger/",
+            "CMS\\" : "app/src/CMS/"
         }
     },
     "autoload-dev": {
