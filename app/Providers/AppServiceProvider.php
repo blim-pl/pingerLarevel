@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('servicesCnt', $cnt ? $cnt : 0);
         });
 
-        view()->composer('layouts.master', function ($view){
+        view()->composer(['layouts.master', 'admin.layouts.master'], function ($view){
            $view->with('message', session('message'));
         });
     }

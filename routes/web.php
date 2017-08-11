@@ -49,7 +49,10 @@ Route::prefix('/admin')->group(function () {
 
         Route::get('/services', 'Admin\ServicesController@index')->name('admin.services');
         Route::get('/services/{service}', 'Admin\ServicesController@show')->name('admin.services.show');
+        Route::get('/services/{service}/edit', 'Admin\ServicesController@edit')->name('admin.services.edit');
 
+        Route::patch('/services/{service}', 'Admin\ServicesController@update')->name('admin.services.update');
+        Route::delete('/services/{service}', 'Admin\ServicesController@destroy')->name('admin.services.destroy');
     });
 
 });

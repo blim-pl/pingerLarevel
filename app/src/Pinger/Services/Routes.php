@@ -20,6 +20,11 @@ class Routes
         $controller = 'ServicesController';
 
         Route::prefix('/services')->group(function () use ($controller) {
+
+            Route::get('/', $controller . '@index')->name('services.index');
+            Route::get('/create', $controller . '@create')->name('services.create');
+            Route::post('/', $controller . '@store')->name('services.store');
+
             Route::group(['middleware' => ['service.access']], function() use ($controller) {
                 Route::get('/{service}', $controller . '@show')->name('services.show');
                 Route::get('/{service}/edit', $controller . '@edit')->name('services.edit');
@@ -27,10 +32,6 @@ class Routes
                 Route::patch('/{service}', $controller . '@update')->name('services.update');
                 Route::delete('/{service}', $controller . '@destroy')->name('services.destroy');
             });
-
-            Route::get('/', $controller . '@index')->name('services.index');
-            Route::get('/create', $controller . '@create')->name('services.create');
-            Route::post('/', $controller . '@store')->name('services.store');
         });
     }
 }

@@ -41,7 +41,7 @@
                     @endif
                 </td>
                 <td class="text-center">
-                    <a href="{{ route('services.edit', $service->id) }}" class="btn btn-primary" title="Edytuj">
+                    <a href="{{ route(($prefix ?? '') . 'services.edit', $service) }}" class="btn btn-primary" title="Edytuj">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
                 </td>
@@ -51,10 +51,9 @@
                     </a>
                 </td>
                 <td class="text-center">
-                    <form method="post" action="{{ route('services.destroy', $service->id) }}">
+                    <form method="post" action="{{ route(($prefix ?? '') . 'services.destroy', $service->id) }}">
                         {{ csrf_field() }}
                         {{ method_field('delete') }}
-
                         <button class="btn btn-danger" type="submit">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>

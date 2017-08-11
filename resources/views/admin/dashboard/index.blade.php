@@ -22,7 +22,7 @@
                         @foreach($services as $service)
                         <tr>
                             <td>
-                                {{ $service->title }}<br />
+                                <a href="{{ route('admin.services.show', $service) }}">{{ $service->title }}</a>
                             </td>
                             <td>
                                 {{ $service->user->name }}
@@ -54,7 +54,7 @@
                                     {{ $log->created_at }}
                                 </td>
                                 <td>
-                                    {{ $log->service->title }}<br>
+                                    <a href="{{ route('admin.services.show', $log->service_id) }}">{{ $log->service->title }}</a><br>
                                     <strong class="text-success">{{ $log->item_type }}</strong>
                                 </td>
                                 <td>

@@ -48,6 +48,7 @@ class ChecksController extends Controller
 
         session()->flash('message', ['content' => $message, 'type' => $type]);
 
-        return redirect()->route('services.index');
+        return back();
+        //return redirect()->route('services.index');
     }
 }

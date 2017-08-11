@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Pinger\ServiceLogs\Models\ServiceLogs;
+use Pinger\Services\Controllers\Read;
+use Pinger\Services\Controllers\Write;
 use Pinger\Services\Models\Service;
+use Pinger\Services\Requests\ServiceRequest;
 
-class ServicesController extends Controller
+class ServicesController extends AdminController
 {
     /**
      * Display a listing of the resource.
@@ -16,31 +16,11 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = Service::paginate(10);
-        $prefix = 'admin.';
+        $data = (new Read())->index();
 
-        return view('services.admin.index', compact('services', 'prefix'));
-    }
+        $data['prefix'] = static::URL_PREXIX;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view(Read::TEMPLATES_ADMIN['index'], $data);
     }
 
     /**
@@ -51,43 +31,50 @@ class ServicesController extends Controller
      */
     public function show(Service $service)
     {
-        $logs = $service->log()->paginate(10);
-        $itemTypes = ServiceLogs::$typesMap;
+        $data = (new Read())->show($service);
 
-        return view('services.admin.show', compact('service', 'logs', 'itemTypes'));
+        return view(Read::TEMPLATES_ADMIN['show'], $data);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \Pinger\Services\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Service $service)
     {
-        //
+        $data = (new Write())->edit($service);
+
+        $data['prefix'] = static::URL_PREXIX;
+
+        return view(Write::TAMPLTES_ADMIN['edit'], $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Pinger\Services\Requests\ServiceRequest  $request
+     * @param  \Pinger\Services\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ServiceRequest $request, Service $service)
     {
-        //
+        (new Write())->update($request, $service);
+
+        return redirect()->route('admin.services');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \Pinger\Services\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Service $service)
     {
-        //
+        (new Write())->destroy($service);
+
+        return redirect()->route('admin.services');
     }
 }

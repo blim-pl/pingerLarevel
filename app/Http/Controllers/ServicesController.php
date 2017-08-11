@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use Pinger\ServiceLogs\Models\ServiceLogs;
+use Pinger\Services\Controllers\Read;
+use Pinger\Services\Controllers\Write;
 use Pinger\Services\Models\Service;
 use Pinger\Services\Requests\ServiceRequest;
 
@@ -21,9 +21,9 @@ class ServicesController extends Controller
      */
     public function index()
     {
-        $services = Service::userServices(Auth::user())->paginate(10);
+        $data = (new Read)->index();
 
-        return view('services.index', compact('services'));
+        return view(Read::TEMPLATES_WEB['index'], $data);
     }
 
     /**
@@ -33,9 +33,9 @@ class ServicesController extends Controller
      */
     public function create()
     {
-        $validationMethods = (new Service())->validationMethods();
+        $data = (new Write())->create();
 
-        return view('services.create', compact('validationMethods'));
+        return view(Write::TEMPLATES_WWW['create'], $data);
     }
 
     /**
@@ -46,11 +46,7 @@ class ServicesController extends Controller
      */
     public function store(ServiceRequest $request)
     {
-        $service = new Service($request->only(['title', 'is_active', 'url', 'valid_method', 'expects', 'emails']));
-        $service->setAttribute('user_id', Auth::user()->id);
-        $service->save();
-
-        //Service::create($data);
+        $data = (new Write())->store($request);
 
         return redirect()->route('services.index');
     }
@@ -63,10 +59,9 @@ class ServicesController extends Controller
      */
     public function show(Service $service)
     {
-        $logs = $service->log()->paginate(10);
-        $itemTypes = ServiceLogs::$typesMap;
+        $data = (new Read())->show($service);
 
-        return view('services.show', compact('service', 'logs', 'itemTypes'));
+        return view(Read::TEMPLATES_WEB['show'], $data);
     }
 
     /**
@@ -77,9 +72,9 @@ class ServicesController extends Controller
      */
     public function edit(Service $service)
     {
-        $validationMethods = (new Service())->validationMethods();
+        $data = (new Write())->edit($service);
 
-        return view('services.edit', compact('service', 'validationMethods'));
+        return view(Write::TEMPLATES_WWW['edit'], $data);
     }
 
     /**
@@ -91,11 +86,7 @@ class ServicesController extends Controller
      */
     public function update(ServiceRequest $request, Service $service)
     {
-        $data = $request->only(['title', 'is_active', 'url', 'valid_method', 'expects', 'emails']);
-
-        $data['user_id'] = $service->id;
-
-        $service->update($data);
+        (new Write())->update($request, $service);
 
         return redirect()->route('services.index');
     }
@@ -108,9 +99,7 @@ class ServicesController extends Controller
      */
     public function destroy(Service $service)
     {
-        $service->delete();
-
-        session()->flash('message', ['content' => __('common.Item has been deleted'), 'type' => 'info']);
+        (new Write())->destroy($service);
 
         return redirect()->route('services.index');
     }
