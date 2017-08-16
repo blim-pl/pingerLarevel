@@ -53,6 +53,15 @@ Route::prefix('/admin')->group(function () {
 
         Route::patch('/services/{service}', 'Admin\ServicesController@update')->name('admin.services.update');
         Route::delete('/services/{service}', 'Admin\ServicesController@destroy')->name('admin.services.destroy');
+
+
+        //Roles
+        Route::get('/roles', 'Admin\RolesController@index')->name('admin.roles');
+        Route::get('/roles/create', 'Admin\RolesController@create')->name('admin.roles.create');
+        Route::get('/roles/{role}/edit', 'Admin\RolesController@edit')->name('admin.roles.edit');
+
+        Route::patch('/roles/{role}', 'Admin\RolesController@update')->name('admin.roles.update');
+        Route::post('/roles', 'Admin\RolesController@store')->name('admin.roles.store');
     });
 
 });

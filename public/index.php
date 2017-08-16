@@ -1,4 +1,5 @@
 <?php
+die('Edycja ról');
 
 /**
  * Laravel - A PHP Framework For Web Artisans

@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'No access' => 'Brak dost epu',
-    'Item has been deleted' => 'Wpis został usunięty'
+    'No access' => 'Brak dostępu',
+    'Item has been deleted' => 'Wpis został usunięty',
+    'Record has benn saved' => 'Rekord został zapisany'
 ];

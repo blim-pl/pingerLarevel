@@ -21,6 +21,8 @@ class RoutesTest extends TestCase
         'pages.show'
     ];
 
+    private $lang = '/pl/';
+
     public function testWebRouteConfig()
     {
         Routes::web();
@@ -45,7 +47,7 @@ class RoutesTest extends TestCase
         $page = Page::whereNotNull('alias')->first();
 
         if ($page) {
-            $response = $this->get($page->alias);
+            $response = $this->get($this->lang . $page->alias);
         }
 
         if ($page) {

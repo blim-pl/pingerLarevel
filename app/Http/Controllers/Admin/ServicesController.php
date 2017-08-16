@@ -25,7 +25,7 @@ class ServicesController extends AdminController
 
     /**
      * Display the specified resource.
-     *
+     *.@deprecated
      * @param  \Pinger\Services\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
