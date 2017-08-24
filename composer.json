@@ -24,7 +24,10 @@
             "App\\": "app/",
             "Pinger\\" : "app/src/Pinger/",
             "CMS\\" : "app/src/CMS/"
-        }
+        },
+        "files": [
+            "app/src/CMS/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

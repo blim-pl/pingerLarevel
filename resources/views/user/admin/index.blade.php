@@ -6,34 +6,33 @@
             <div class="row">
                 <div class="col-xs-12">
                     <h1>
-                        Role \ uprawnienia
+                        Użytkownicy
                     </h1>
-
-                    <p>
-                        <a href="{{ route('admin.roles.create') }}" class="btn btn-success">Dodaj</a>
-                    </p>
-
                     <table class="table">
                         <tr>
-                            <th>Nazwa</th>
-                            <th colspan="2">Akcje</th>
+                            <th>Email</th>
+                            <th>Imię</th>
+                            <th class="text-center" colspan="2">Akcje</th>
                         </tr>
-
-                        @foreach ($roles as $role)
+                        @foreach($users as $user)
                             <tr>
                                 <td>
-                                    {{ $role->title }}
+                                    {{$user->email}}
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-primary">
+                                    {{$user->name}}
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
                                 </td>
-                                <td>
-                                    <form method="post" action="{{ route('admin.roles.destroy', $role->id) }}">
+                                <td class="text-center">
+                                    <form method="post" action="{{ route('admin.users.destroy', $user) }}">
                                         {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">
+                                        {{ method_field('delete') }}
+
+                                        <button class="btn btn-danger" type="submit">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </button>
                                     </form>
@@ -41,6 +40,10 @@
                             </tr>
                         @endforeach
                     </table>
+
+                    <div class="text-center">
+                        {{ $users->links() }}
+                    </div>
                 </div>
             </div>
         </div>

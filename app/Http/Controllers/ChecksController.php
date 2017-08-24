@@ -45,8 +45,7 @@ class ChecksController extends Controller
             $type = 'danger';
         }
 
-
-        session()->flash('message', ['content' => $message, 'type' => $type]);
+        flashMessage($message, $type);
 
         return back();
         //return redirect()->route('services.index');

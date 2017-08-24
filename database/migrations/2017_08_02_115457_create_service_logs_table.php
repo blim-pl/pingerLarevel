@@ -25,7 +25,8 @@ class CreateServiceLogsTable extends Migration
         Schema::table('service_logs', function (Blueprint $table) {
             $table->foreign('service_id')
                 ->references('id')
-                ->on('services');
+                ->on('services')
+                ->onDelete('cascade');
         });
     }
 

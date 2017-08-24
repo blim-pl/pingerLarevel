@@ -9,6 +9,10 @@
             <a href="{{ route('admin.roles') }}" title="Uprawnienia użytkowników">Role</a>
         </li>
 
+        <li>
+            <a href="{{ route('admin.users') }}" title="Zarejestrowani użytkownicy">Użytkownicy</a>
+        </li>
+
         <li class="page-scroll">
             <a href="{{ route('admin.services') }}">Usługi</a>
         </li>

@@ -17,4 +17,6 @@ Po wykryciu zakończenia awarii użytkownik zostanie powiadomiony o ponownym dzi
 usługi. Aplikacja umożliwia rejsetrację użytkownika (logowanie, przypomnienie hasła, konto użytkownika).
 Każdy z użytkowników posiada własne zdefiniowane usługi. Każde konto posiada limit 10 usług.
 
+Panel umożliwia zarządanie kontami użytkowników oraz ich rolami (uprawnienia).
+
 Aplikacja będzie uruchamiana cyklicznie co 60s (1 minutę) - równoległe procesy w php.

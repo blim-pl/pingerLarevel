@@ -2,7 +2,7 @@
 
 namespace CMS\User\Role\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use CMS\Http\FormRequest;
 
 class RoleRequest extends FormRequest
 {
@@ -24,13 +24,9 @@ class RoleRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'title' => 'required|unique:roles'
+            'title' => ['required', 'unique:roles']
         ];
 
-        if ($this->method() == 'PATCH') {
-            $rules['title'] .= ',id,' . $this->get('id');
-        }
-
-        return $rules;
+        return parent::checkRules($rules, $this->role);
     }
 }

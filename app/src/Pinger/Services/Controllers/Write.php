@@ -82,7 +82,7 @@ class Write
     {
         $service->delete();
 
-        session()->flash('message', ['content' => __('common.Item has been deleted'), 'type' => 'info']);
+        flashMessage(__('common.Item has been deleted'));
 
         return compact('service');
     }

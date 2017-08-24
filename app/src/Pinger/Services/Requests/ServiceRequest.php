@@ -2,7 +2,7 @@
 
 namespace Pinger\Services\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use CMS\Http\FormRequest;
 
 class ServiceRequest extends FormRequest
 {
@@ -23,12 +23,14 @@ class ServiceRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'title' => 'required|max:255',
             'url'   => 'required|max:255|regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-\?=&]*)*\/?$/',
             'valid_method'=> 'required',
             'expects' => 'required',
             'emails' => 'required'
         ];
+
+        return parent::checkRules($rules, $this->service);
     }
 }

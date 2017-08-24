@@ -41,7 +41,7 @@ class RolesController extends Controller
         $roles = new Role($request->only(['title']));
         $roles->save();
 
-        session()->flash('message', ['content' => __('common.Record has benn saved'), 'type' => 'success']);
+        flashMessage(__('common.Record has been saved'));
 
         return redirect()->route('admin.roles');
     }
@@ -77,7 +77,11 @@ class RolesController extends Controller
      */
     public function update(RoleRequest $request, Role $role)
     {
-        dd($role);
+        $role->update($request->only('title'));
+
+        flashMessage(__('common.Record has been saved'));
+
+        return redirect()->route('admin.roles');
     }
 
     /**
@@ -88,6 +92,10 @@ class RolesController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        flashMessage( __('common.Item has been deleted'));
+
+        return redirect()->route('admin.roles');
     }
 }

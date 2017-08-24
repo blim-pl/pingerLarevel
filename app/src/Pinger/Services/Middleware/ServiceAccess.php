@@ -17,13 +17,9 @@ class ServiceAccess
     public function handle($request, Closure $next)
     {
         if ($request->service && false === $request->service->isOwner(Auth::user())) {
-            session()->flash(
-                'message',
-                [
-                    'content' => __('common.No access'),
-                    'type' => 'danger'
-                ]
-            );
+
+            flashMessage(__('common.No access'), 'danger');
+
             return redirect('/');
         }
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace Pinger\Pages\Requests;
+namespace App\Http\Requests\Admin;
 
 use CMS\Http\FormRequest;
 
-class PageRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class PageRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'title' => 'required|max:255',
-            'alias' => 'regex:/^[a-z\d\-\_]+$/|unique:pages'
+            'email' => ['required', 'unique:users'],
+            'password' => ['confirmed']
         ];
 
-        return parent::checkRules($rules, $this->page);
+        return parent::checkRules($rules, $this->user);
     }
 }
