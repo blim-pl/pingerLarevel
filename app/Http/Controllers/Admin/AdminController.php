@@ -13,4 +13,9 @@ use App\Http\Controllers\Controller;
 abstract class AdminController extends Controller
 {
     const URL_PREXIX = 'admin.';
+
+    public function __construct()
+    {
+        $this->middleware('action.access');
+    }
 }

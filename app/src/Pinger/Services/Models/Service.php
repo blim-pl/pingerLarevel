@@ -3,7 +3,8 @@
 namespace Pinger\Services\Models;
 
 use App\Model;
-use App\User;
+
+use CMS\User\Models\User;
 use Pinger\ServiceLogs\Models\ServiceLogs;
 use Pinger\ServiceValidations\Methods\CheckContent;
 use Pinger\ServiceValidations\Methods\CheckStatus;

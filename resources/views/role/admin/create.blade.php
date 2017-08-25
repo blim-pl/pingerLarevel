@@ -17,7 +17,12 @@
 
                         <div class="form-group">
                             <label for="title">Nazwa</label>
-                            <input type="text" class="form-control" name="title" required value="{{ old('title') }}" />
+                            <input type="text" class="form-control" name="title" required value="{{ old('title') }}" placeholder="Etykieta" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="access">Dostęp</label>
+                            <input type="text" class="form-control" name="access" required value="{{ old('access') }}" placeholder="akcje po przecinku" />
                         </div>
 
                         <div class="form-group">

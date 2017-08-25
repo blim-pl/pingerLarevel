@@ -1,3 +1,5 @@
+- usuwanie konto - problem z kluczami obcymi
+
 - rodzaje walidacji z bazy - lub konfigu
 - logi
 - powiadomienia

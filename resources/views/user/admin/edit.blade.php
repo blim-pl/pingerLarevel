@@ -16,23 +16,39 @@
 
                         <div class="form-group">
                             <label>Imię</label>
-                            <input type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}" />
+                            <input type="text" class="form-control" name="name" value="{{ old('name', $user->name) }}"/>
                         </div>
 
                         <div class="form-group">
                             <label>E-mail/Login</label>
-                            <input type="email" class="form-control" name="email" value="{{ old('email', $user->email) }}" required="email" />
+                            <input type="email" class="form-control" name="email"
+                                   value="{{ old('email', $user->email) }}" required="email"/>
                         </div>
 
                         <div class="form-group">
                             <label>Nowe hasło</label>
-                            <input type="password" class="form-control" name="password" />
+                            <input type="password" class="form-control" name="password"/>
                         </div>
 
                         <div class="form-group">
                             <label>Powtórz nowe hasło</label>
                             <input type="password" class="form-control" name="password_confirmation">
                         </div>
+
+                        <div class="form-group">
+                            @foreach($roles as $role)
+                                <div class="checkbox-inline">
+
+                                    <label>
+                                        <input type="checkbox" name="roles[]" value="{{ $role->id }}"
+                                        @if($userRoles && in_array($role->id, $userRoles)) checked="checked" @endif/>
+                                        {{ $role->title }}
+                                    </label>
+
+                                </div>
+                            @endforeach
+                        </div>
+
 
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">

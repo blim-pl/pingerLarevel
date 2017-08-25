@@ -1,6 +1,6 @@
 <?php
 
-namespace CMS\User\Role\Requests;
+namespace CMS\Role\Requests;
 
 use CMS\Http\FormRequest;
 

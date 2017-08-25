@@ -18,7 +18,12 @@
                             <label for="title">
                                 Nazwa
                             </label>
-                            <input name="title" value="{{ old('title', $role->title) }}" class="form-control" />
+                            <input name="title" value="{{ old('title', $role->title) }}" class="form-control" placeholder="Etykieta" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="access">Dostęp</label>
+                            <input type="text" value="{{ old('access', $role->access) }}" name="access" class="form-control" placeholder="akcje po przecinku" />
                         </div>
 
                         <div class="form-group">

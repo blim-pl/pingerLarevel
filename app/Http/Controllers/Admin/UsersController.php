@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\UserRequest;
-use App\User;
+use CMS\User\Models\User;
+use CMS\Role\Models\Role;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminController;
 
-class UsersController extends Controller
+class UsersController extends AdminController
 {
     /**
      * Display a listing of the resource.
@@ -56,14 +57,17 @@ class UsersController extends Controller
             abort(404);
         }
 
-        return view('user.admin.edit', compact('user'));
+        $roles = Role::get();
+        $userRoles = $user->roles()->pluck('role_id')->all();
+
+        return view('user.admin.edit', compact('user', 'roles', 'userRoles'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\Admin\UserRequest  $request
-     * @param  \App\User  $user
+     * @param  \CMS\User\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(UserRequest $request, User $user)
@@ -74,9 +78,13 @@ class UsersController extends Controller
             $data['password'] = bcrypt($password);
         }
 
-        $user->update($data);
+        if($user->update($data)) {
+            $user->saveRoles($request->get('roles'));
 
-        flashMessage(__('common.Item has been deleted'));
+            flashMessage(__('common.Record has been saved'));
+        } else {
+            flashMessage(__('common.Save error'), 'danger');
+        }
 
         return redirect()->route('admin.users');
     }

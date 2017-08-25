@@ -13,16 +13,20 @@
                         <a href="{{ route('admin.roles.create') }}" class="btn btn-success">Dodaj</a>
                     </p>
 
-                    <table class="table">
+                    <table class="table table-striped">
                         <tr>
                             <th>Nazwa</th>
-                            <th colspan="2">Akcje</th>
+                            <th>Dostęp</th>
+                            <th colspan="2" class="text-center">Akcje</th>
                         </tr>
 
                         @foreach ($roles as $role)
                             <tr>
                                 <td>
                                     {{ $role->title }}
+                                </td>
+                                <td>
+                                    {{ $role->access }}
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.roles.edit', $role) }}" class="btn btn-primary">

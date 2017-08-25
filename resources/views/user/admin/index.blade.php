@@ -8,7 +8,7 @@
                     <h1>
                         Użytkownicy
                     </h1>
-                    <table class="table">
+                    <table class="table table-striped">
                         <tr>
                             <th>Email</th>
                             <th>Imię</th>

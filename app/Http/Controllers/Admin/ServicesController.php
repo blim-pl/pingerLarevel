@@ -16,7 +16,7 @@ class ServicesController extends AdminController
      */
     public function index()
     {
-        $data = (new Read())->index();
+        $data = (new Read())->adminIndex();
 
         $data['prefix'] = static::URL_PREXIX;
 

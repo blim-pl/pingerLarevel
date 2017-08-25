@@ -30,6 +30,13 @@ class Read
         return compact('services');
     }
 
+    public function adminIndex()
+    {
+        $services = Service::paginate(10);
+
+        return compact('services');
+    }
+
     /**
      * Display the specified resource.
      *

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminController;
 use Pinger\ServiceLogs\Models\ServiceLogs;
 use Pinger\Services\Models\Service;
 
-class DashboardController extends Controller
+class DashboardController extends AdminController
 {
     /**
      * Display a listing of the resource.
