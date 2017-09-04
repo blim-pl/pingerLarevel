@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use CMS\TestThread;
 use Illuminate\Support\Facades\Auth;
 use Pinger\Pages\Models\Page;
 use Illuminate\Http\Request;

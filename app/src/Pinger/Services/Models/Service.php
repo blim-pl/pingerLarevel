@@ -87,4 +87,9 @@ class Service extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function allActive()
+    {
+        return $this->where('is_active', 1)->get();
+    }
 }

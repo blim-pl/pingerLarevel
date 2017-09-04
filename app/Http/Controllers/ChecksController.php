@@ -24,14 +24,7 @@ class ChecksController extends Controller
     public function show(Service $service)
     {
 
-        $methodClass = $service->validationMethod();
-        $transportClass = config('app.pinger.services-transport');
-
-        $methodInstance = new $methodClass($service, new $transportClass());
-
-        $methodInstance
-            ->attach(new MailerObserver())
-            ->attach(new LogsObserver());
+        $methodInstance = (new \Pinger\Checks\Controllers\Checks())->getMethodInstance($service);
 
         $result = $methodInstance->process()->result();
 

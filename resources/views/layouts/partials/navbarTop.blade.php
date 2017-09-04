@@ -41,7 +41,9 @@
             </li>
         @endif
 
+        @if(Auth::user())
         <li><a href="{{ route('admin.dashboard') }}">Admin</a></li>
+        @endif
     </ul>
 </div>
 <!-- /.navbar-collapse -->

@@ -82,7 +82,7 @@ class User extends Authenticatable
 
         $roles = $this->roles()->pluck('access');
 
-        foreach($roles as $access){
+        foreach ($roles as $access) {
             $accesses = explode(',', $access);
 
             array_map('trim', $accesses);
@@ -96,11 +96,23 @@ class User extends Authenticatable
     /**
      * Check access to specify action
      *
-     * @param string $action
+     * @param array $actions
      * @return bool
      */
-    public function hasAccess(string $action)
+    public function hasAccess(array $actions)
     {
-        return in_array($action, $this->access());
+        if (!in_array('all', $actions)) {
+            $actions[] = 'all';
+        }
+
+        $userAccess = $this->access();
+
+        foreach ($actions as $action) {
+            if (in_array($action, $userAccess)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

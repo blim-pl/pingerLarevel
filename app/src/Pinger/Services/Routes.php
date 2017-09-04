@@ -1,4 +1,5 @@
 <?php
+
 namespace Pinger\Services;
 
 use Illuminate\Support\Facades\Route;
@@ -25,13 +26,27 @@ class Routes
             Route::get('/create', $controller . '@create')->name('services.create');
             Route::post('/', $controller . '@store')->name('services.store');
 
-            Route::group(['middleware' => ['service.access']], function() use ($controller) {
+            Route::group(['middleware' => ['service.access']], function () use ($controller) {
                 Route::get('/{service}', $controller . '@show')->name('services.show');
                 Route::get('/{service}/edit', $controller . '@edit')->name('services.edit');
 
                 Route::patch('/{service}', $controller . '@update')->name('services.update');
                 Route::delete('/{service}', $controller . '@destroy')->name('services.destroy');
             });
+        });
+    }
+
+    public static function webAdmin()
+    {
+        $controller = 'Admin\ServicesController';
+
+        Route::prefix('/services')->group(function() use ($controller) {
+            Route::get('/', $controller .'@index')->name('admin.services');
+            Route::get('/{service}', $controller .'@@show')->name('admin.services.show');
+            Route::get('/{service}/edit', $controller .'@@edit')->name('admin.services.edit');
+
+            Route::patch('/{service}', $controller .'@@update')->name('admin.services.update');
+            Route::delete('/{service}', $controller .'@@destroy')->name('admin.services.destroy');
         });
     }
 }

@@ -43,34 +43,23 @@ Route::prefix('/pl')->group(function () {
 
 Route::prefix('/admin')->group(function () {
 
-    Route::group(['middleware' => ['auth']], function () {
+    App::setLocale('pl');
 
-        Route::get('/', 'Admin\DashboardController@index', ['aaa'])->name('admin.dashboard');
+    Route::group([
+        'middleware' => ['auth', 'action.access'],
+        'roles' => ['admin']
+    ], function () {
+
+        Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard');
 
         //services
-        Route::get('/services', 'Admin\ServicesController@index')->name('admin.services');
-        Route::get('/services/{service}', 'Admin\ServicesController@show')->name('admin.services.show');
-        Route::get('/services/{service}/edit', 'Admin\ServicesController@edit')->name('admin.services.edit');
-
-        Route::patch('/services/{service}', 'Admin\ServicesController@update')->name('admin.services.update');
-        Route::delete('/services/{service}', 'Admin\ServicesController@destroy')->name('admin.services.destroy');
-
+        \Pinger\Services\Routes::webAdmin();
 
         //Roles
-        Route::get('/roles', 'Admin\RolesController@index')->name('admin.roles');
-        Route::get('/roles/create', 'Admin\RolesController@create')->name('admin.roles.create');
-        Route::get('/roles/{role}/edit', 'Admin\RolesController@edit')->name('admin.roles.edit');
-
-        Route::patch('/roles/{role}', 'Admin\RolesController@update')->name('admin.roles.update');
-        Route::post('/roles', 'Admin\RolesController@store')->name('admin.roles.store');
-        Route::delete('/roles/{role}', 'Admin\RolesController@destroy')->name('admin.roles.destroy');
+        \CMS\Role\Routes::webAdmin();
 
         //Users
-        Route::get('/users', 'Admin\UsersController@index')->name('admin.users');
-        Route::get('/users/{user}/edit', 'Admin\UsersController@edit')->name('admin.users.edit');
-
-        Route::patch('/users/{user}', 'Admin\UsersController@update')->name('admin.users.update');
-        Route::delete('/users/{user}', 'Admin\UsersController@destroy')->name('admin.users.destroy');
+        \CMS\User\Routes::webAdmin();
     });
 
 });
